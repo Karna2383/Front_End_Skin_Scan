@@ -174,9 +174,15 @@ cython_debug/
 .abstra/
 
 # Visual Studio Code
+<<<<<<< HEAD
 #  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 #  and can be added to the global gitignore or merged into this file. However, if you prefer,
+=======
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+>>>>>>> 2d1a5cd0fb26310739368877d8ca053f70d93323
 #  you could uncomment the following to ignore the enitre vscode folder
 # .vscode/
 
@@ -191,5 +197,9 @@ cython_debug/
 #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
+<<<<<<< HEAD
 .cursorindexingignore
 .streamlit/
+=======
+.cursorindexingignore
+>>>>>>> 2d1a5cd0fb26310739368877d8ca053f70d93323

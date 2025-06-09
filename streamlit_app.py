@@ -66,8 +66,9 @@ uploaded_image = st.file_uploader("Upload skin lesion image", type=["jpg", "jpeg
 if uploaded_image:
     image = Image.open(uploaded_image)
     st.image(image, caption="Uploaded Lesion", use_container_width=True)
-
+    
     # Predict
+    #### post sending information to the backend and retrieve predication
     predicted_class = predict_class(image)
 
     # Generate report

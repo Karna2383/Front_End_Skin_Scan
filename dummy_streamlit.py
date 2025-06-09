@@ -23,8 +23,8 @@ location_map = {
     "Abdomen": "abdomen",
     "Back": "back",
     "Chest": "chest",
-    "Legs or feet": "lower extremity",
-    "Arms or hands": "upper extremity",
+    "Legs or Feet": "lower extremity",
+    "Arms or Hands": "upper extremity",
     "Scalp": "scalp",
     "Face": "face"
 }
@@ -97,7 +97,7 @@ sex = st.selectbox("Patient Sex", ["Male", "Female", "Other"])
 user_friendly_location = st.selectbox("Lesion Location", [
     "Abdomen", "Back", "Chest", "Legs or Feet", "Arms or Hands", "Scalp", "Face"
 ])
-lifestyle_work = st.text_input("Lifestyle/Work Description", "outdoors")
+lifestyle_work = st.text_input("Lifestyle/Work Description", "Outdoors")
 uploaded_image = st.file_uploader("Upload Skin Lesion Image", type=["jpg", "jpeg", "png"])
 
 if uploaded_image:

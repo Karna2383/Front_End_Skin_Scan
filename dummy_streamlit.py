@@ -1,15 +1,29 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image
 import openai
 import requests
 from io import BytesIO
 
+from streamlit_option_menu import option_menu
+import streamlit as st
+
+with st.sidebar:
+    page = option_menu(
+        menu_title="Go to",
+        options=["Introduction", "Skin Scan Diagnosis", "About Us"],
+        icons=["house", "camera", "info-circle"],
+        styles={
+            "container": {"padding":"10", "width":"stretch"},
+            "nav-link": {"font-size":"18px","padding":"8px 0"},
+            "nav-link-selected": {"font-size":"20px"}
+        }
+    )
+
+
 # OpenAI key
 openai.api_key = st.secrets["OPEN_AI_KEY_SRI"]
 
-# Sidebar navigation
-st.sidebar.title("Skin Scan")
-page = st.sidebar.radio("Go to", ["Introduction", "Skin Scan Diagnosis", "About Us"])
 
 # Lesion class labels
 lesion_types = {
@@ -93,17 +107,24 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
 if page == "Introduction":
     st.image("skinscan.jpg", width=1444)
     st.title("🌿 Welcome to Skin Scan")
+    st.subheader("Your Smart Dermatology Assistant")
     st.markdown("""
+        <style>
+    body {
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+    }
+    </style>
     **Skin Scan** is your friendly AI-powered dermatology assistant.
-    Just upload a skin lesion photo, and our model gives you a possible match with a simple explanation.
+    Just upload a skin lesion(🐭) photo, and our model gives you a possible match with a simple explanation.
 
-    ✅ Upload your photo
-    ✅ Get an AI prediction
-    ✅ Understand what it might mean
+    ⬆️ Upload your photo \n
+    👾 Get an AI prediction \n
+    💭 Understand what it might mean \n
 
     ---
     **Note:** This tool does not replace medical professionals. It is for educational purposes only.
-    """)
+    """,
+    unsafe_allow_html = True)
 
 # Page 2: Diagnosis Tool
 elif page == "Skin Scan Diagnosis":
@@ -147,22 +168,44 @@ elif page == "Skin Scan Diagnosis":
 # Page 3: About Us
 elif page == "About Us":
     st.title("👥 About Us")
-    st.markdown("""
-    **Who We Are**
 
-    Skin Scan is developed by a small team of engineers and healthcare enthusiasts who believe in empowering people through AI.
+    st.markdown("""
+    **About Skin Scan**
+
+    Skin Scan is an AI-powered dermatology assistant developed as part of the **Le Wagon Data Science Bootcamp**.
+
+    We are a team of three with diverse backgrounds in engineering, analysis, and consulting, who are interested in using technology to create new solutions. Our current focus is on making early skin lesion insights more accessible and understandable.
 
     **Our Goals**
-    - Make early skin lesion insights more accessible
-    - Help users feel informed and reassured
-    - Support clinical care through educational AI tools
+
+    - 🧠 Empower users with early, AI-generated insights
+    - 📚 Provide calm, clear explanations without medical jargon
+    - 🤝 Support clinical awareness through educational tools
 
     ---
+
+    **Who We Are**
+
+    **🔹 Charlie Saunders**
+    Software Engineer at SeaMap and former Royal Navy Weapon Engineering Technician.
+    *Hobbies:* Rock climbing and cycling.
+    GitHub: [@Chapungu](https://github.com/Chapungu)
+
+    **🔹 Marcin Mochnacki**
+    Technology, Media & Telecommunications Consultant with a BSc in Mathematics and Economics from LSE.
+    *Hobbies:* Polish politics and chess.
+    GitHub: [@mohnatz](https://github.com/mohnatz)
+
+    **🔹 Srikant Vedutla**
+    A specialist recruiter in Azure Cloud, Data, and Insurance roles within the financial sector.
+    *Hobbies:* Football and poker.
+    GitHub: [@Karna2383](https://github.com/Karna2383)
+
+    ---
+
     **Contact Us**
-    - 📧 Email: contact@skinscan.ai
-    - 🧑‍💻 GitHub: [YourRepo](https://github.com/your-repo)
-    - 🐦 Twitter: [@SkinScanAI](https://twitter.com/yourhandle)
-    """)
+    For feedback, collaboration, or questions, feel free to reach out via GitHub.""")
+
 
 # Disclaimer shown on all pages
 st.markdown("""

@@ -24,7 +24,6 @@ with st.sidebar:
 # OpenAI key
 openai.api_key = st.secrets["OPEN_AI_KEY_SRI"]
 
-
 # Lesion class labels
 lesion_types = {
     "vasc": "Vascular Lesions",
@@ -55,7 +54,7 @@ def predict_class(image, age, sex, body_location):
 
     try:
         response = requests.post(
-            "http://localhost:8000/predict",
+            "https://skinscan-700139180257.europe-west1.run.app/predict",
             files={"file": ("image.png", image_bytes, "image/png")},
             data={"age": str(age), "sex": sex, "body_location": body_location}
         )
@@ -204,14 +203,11 @@ elif page == "About Us":
     ---
 
     **Contact Us**
-    For feedback, collaboration, or questions, feel free to reach out via GitHub.""")
+    For feedback, collaboration, or questions, feel free to reach out via GitHub.
 
-
-# Disclaimer shown on all pages
-st.markdown("""
----
-⚠️ **Disclaimer:**
-This tool is powered by AI and is intended for educational and informational purposes only.
-It does **not** provide medical advice, diagnosis, or treatment.
-Always consult a qualified healthcare provider for any skin concerns or conditions.
-""")
+    ---
+    ⚠️ **Disclaimer:**
+    This tool is powered by AI and is intended for educational and informational purposes only.
+    It does **not** provide medical advice, diagnosis, or treatment.
+    Always consult a qualified healthcare provider for any skin concerns or conditions.
+    """)

@@ -37,7 +37,7 @@ def predict_class(image, age, sex, body_location):
 
     try:
         response = requests.post(
-            "https://skinscan-700139180257.europe-west1.run.app/",
+            "https://skinscan-700139180257.europe-west1.run.app/predict",
             files={"file": ("image.png", image_bytes, "image/png")},
             data={
                 "age": str(age),
@@ -90,9 +90,9 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
     return response.choices[0].message.content
 
 # Streamlit UI
-st.title("Skin Scan")
+st.title("Skin Scan WEBSITE")
 
-age = st.number_input("Patient Age", min_value=1, max_value=120, value=30)
+age = st.number_input("Patient Age TEST", min_value=1, max_value=120, value=30)
 sex = st.selectbox("Patient Sex", ["Male", "Female", "Other"])
 user_friendly_location = st.selectbox("Lesion Location", [
     "Abdomen", "Back", "Chest", "Legs or Feet", "Arms or Hands", "Scalp", "Face"

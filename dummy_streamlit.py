@@ -91,6 +91,7 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
 
 # Page 1: Introduction
 if page == "Introduction":
+    st.image("skinscan.jpg", width=1444)
     st.title("🌿 Welcome to Skin Scan")
     st.markdown("""
     **Skin Scan** is your friendly AI-powered dermatology assistant.

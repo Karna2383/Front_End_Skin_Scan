@@ -37,7 +37,7 @@ def predict_class(image, age, sex, body_location):
 
     try:
         response = requests.post(
-            "http://localhost:8000/predict",
+            "https://skinscan-700139180257.europe-west1.run.app/",
             files={"file": ("image.png", image_bytes, "image/png")},
             data={
                 "age": str(age),

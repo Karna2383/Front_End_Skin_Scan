@@ -41,7 +41,7 @@ def predict_class(image, age, sex, body_location):
 
     try:
         response = requests.post(
-            "http://localhost:8000/predict",
+            "https://skinscan-700139180257.europe-west1.run.app/predict",
             files={"file": ("image.png", image_bytes, "image/png")},
             data={"age": str(age), "sex": sex, "body_location": body_location}
         )
@@ -146,28 +146,47 @@ elif page == "Skin Scan Diagnosis":
 # Page 3: About Us
 elif page == "About Us":
     st.title("👥 About Us")
-    st.markdown("""
-    **Who We Are**
 
-    Skin Scan is developed by a small team of engineers and healthcare enthusiasts who believe in empowering people through AI.
+    st.markdown("""
+    **About Skin Scan**
+
+    Skin Scan is an AI-powered dermatology assistant developed as part of the **Le Wagon Data Science Bootcamp**.
+
+    We are a team of three with diverse backgrounds in engineering, analysis, and consulting, who are interested in using technology to create new solutions. Our current focus is on making early skin lesion insights more accessible and understandable.
 
     **Our Goals**
-    - Make early skin lesion insights more accessible
-    - Help users feel informed and reassured
-    - Support clinical care through educational AI tools
+
+    - 🧠 Empower users with early, AI-generated insights
+    - 📚 Provide calm, clear explanations without medical jargon
+    - 🤝 Support clinical awareness through educational tools
 
     ---
-    **Contact Us**
-    - 📧 Email: contact@skinscan.ai
-    - 🧑‍💻 GitHub: [YourRepo](https://github.com/your-repo)
-    - 🐦 Twitter: [@SkinScanAI](https://twitter.com/yourhandle)
-    """)
 
-# Disclaimer shown on all pages
-st.markdown("""
----
-⚠️ **Disclaimer:**
-This tool is powered by AI and is intended for educational and informational purposes only.
-It does **not** provide medical advice, diagnosis, or treatment.
-Always consult a qualified healthcare provider for any skin concerns or conditions.
-""")
+    **Who We Are**
+
+    **🔹 Charlie Saunders**
+    Software Engineer at SeaMap and former Royal Navy Weapon Engineering Technician.
+    *Hobbies:* Rock climbing and cycling.
+    GitHub: [@Chapungu](https://github.com/Chapungu)
+
+    **🔹 Marcin Mochnacki**
+    Technology, Media & Telecommunications Consultant with a BSc in Mathematics and Economics from LSE.
+    *Hobbies:* Polish politics and chess.
+    GitHub: [@mohnatz](https://github.com/mohnatz)
+
+    **🔹 Srikant Vedutla**
+    A specialist recruiter in Azure Cloud, Data, and Insurance roles within the financial sector.
+    *Hobbies:* Football and poker.
+    GitHub: [@Karna2383](https://github.com/Karna2383)
+
+    ---
+
+    **Contact Us**
+    For feedback, collaboration, or questions, feel free to reach out via GitHub.
+
+    ---
+    ⚠️ **Disclaimer:**
+    This tool is powered by AI and is intended for educational and informational purposes only.
+    It does **not** provide medical advice, diagnosis, or treatment.
+    Always consult a qualified healthcare provider for any skin concerns or conditions.
+    """)

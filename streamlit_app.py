@@ -60,7 +60,7 @@ sex = st.selectbox("Sex", ["Male", "Female", "Other"])
 body_location = st.selectbox("Lesion Location", [
     "Abdomen", "Back", "Chest", "Legs or feet", "Arms or hands", "Scalp", "Face"
 ])
-lifestyle_work = st.text_input("Lifestyle/Work", "outdoors")
+lifestyle_work = st.text_input("Lifestyle/Work", "Outdoors")
 uploaded_image = st.file_uploader("Upload skin lesion image", type=["jpg", "jpeg", "png"])
 
 if uploaded_image:
@@ -68,6 +68,7 @@ if uploaded_image:
     st.image(image, caption="Uploaded Lesion", use_container_width=True)
 
     # Predict
+    #### post sending information to the backend and retrieve predication
     predicted_class = predict_class(image)
 
     # Generate report

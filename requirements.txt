@@ -11,7 +11,7 @@
 # google-cloud-bigquery
 # google-cloud-bigquery-storage
 
-
+#pyheif
 streamlit
 openai
 pillow

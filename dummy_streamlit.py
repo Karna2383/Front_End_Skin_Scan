@@ -90,7 +90,7 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
     return response.choices[0].message.content
 
 # Streamlit UI
-st.title("Skin Scan AI")
+st.title("Skin Scan")
 
 age = st.number_input("Patient Age", min_value=1, max_value=120, value=30)
 sex = st.selectbox("Patient Sex", ["Male", "Female", "Other"])

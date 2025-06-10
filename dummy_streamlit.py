@@ -1,15 +1,28 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image
 import openai
 import requests
 from io import BytesIO
 
+from streamlit_option_menu import option_menu
+import streamlit as st
+
+with st.sidebar:
+    page = option_menu(
+        menu_title="Go to",
+        options=["Introduction", "Skin Scan Diagnosis", "About Us"],
+        icons=["house", "camera", "info-circle"],
+        styles={
+            "container": {"padding":"10", "width":"stretch"},
+            "nav-link": {"font-size":"18px","padding":"8px 0"},
+            "nav-link-selected": {"font-size":"20px"}
+        }
+    )
+
+
 # OpenAI key
 openai.api_key = st.secrets["OPEN_AI_KEY_SRI"]
-
-# Sidebar navigation
-st.sidebar.title("Skin Scan")
-page = st.sidebar.radio("Go to", ["Introduction", "Skin Scan Diagnosis", "About Us"])
 
 # Lesion class labels
 lesion_types = {
@@ -91,18 +104,26 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
 
 # Page 1: Introduction
 if page == "Introduction":
+    st.image("skinscan.jpg", width=1444)
     st.title("🌿 Welcome to Skin Scan")
+    st.subheader("Your Smart Dermatology Assistant")
     st.markdown("""
+        <style>
+    body {
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+    }
+    </style>
     **Skin Scan** is your friendly AI-powered dermatology assistant.
-    Just upload a skin lesion photo, and our model gives you a possible match with a simple explanation.
+    Just upload a skin lesion(🐭) photo, and our model gives you a possible match with a simple explanation.
 
-    ✅ Upload your photo
-    ✅ Get an AI prediction
-    ✅ Understand what it might mean
+    ⬆️ Upload your photo \n
+    👾 Get an AI prediction \n
+    💭 Understand what it might mean \n
 
     ---
     **Note:** This tool does not replace medical professionals. It is for educational purposes only.
-    """)
+    """,
+    unsafe_allow_html = True)
 
 # Page 2: Diagnosis Tool
 elif page == "Skin Scan Diagnosis":

@@ -20,6 +20,10 @@ with st.sidebar:
         }
     )
 
+local_docker = False
+BACKEND_API_BASE_URL = 'https://skinscan-700139180257.europe-west1.run.app'
+if local_docker :
+    BACKEND_API_BASE_URL = 'http://localhost:8000/'
 
 # OpenAI key
 openai.api_key = st.secrets["OPEN_AI_KEY_SRI"]
@@ -54,7 +58,7 @@ def predict_class(image, age, sex, body_location):
 
     try:
         response = requests.post(
-            "http://localhost:8000/predict",
+            f"{BACKEND_API_BASE_URL}/predict",
             files={"file": ("image.png", image_bytes, "image/png")},
             data={"age": str(age), "sex": sex, "body_location": body_location}
         )

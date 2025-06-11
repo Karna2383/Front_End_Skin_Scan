@@ -13,6 +13,7 @@
 
 #pyheif
 streamlit
+streamlit_option_menu
 openai
 pillow
 pandas

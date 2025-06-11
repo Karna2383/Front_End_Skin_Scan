@@ -74,24 +74,36 @@ def predict_class(image, age, sex, body_location):
         return "unknown", {}
 
 # GPT-based report generation
-def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max_tokens=150):
+def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max_tokens=450):
     system_prompt = (
-        "You are a friendly and helpful dermatology assistant. "
-        "You explain skin cancer results in a concise, calm, simple language that’s easy for anyone to understand. "
-        "You avoid medical jargon, speak with warmth, and gently guide the patient on what to do next. "
-        "Limit to 150 words."
+        "You are a kind, friendly dermatology assistant. "
+        "You explain AI skin lesion results using structured, warm language with emojis and bullet points. "
+        "You tailor your explanation based on the patient's age, sex, lesion location, and lifestyle. "
+        "Keep it simple, calm, and helpful. Do not use medical jargon. "
+        "Output should include 5 sections:\n"
+
+        "1. 🩺 What the AI saw – Name the lesion type and explain it briefly (4-5 sentences, no jargon)\n"
+
+        "2. 📍 Location Identified\n"
+
+        "3. 🧬 Why it may appear\n"
+
+        "4. 🏃‍♂️ Lifestyle Link\n"
+
+        "5. ✅ What you should do next (in 2–3 bullet points)\n"
+        "End with a kind reminder that this is not a medical diagnosis."
     )
 
     prompt = f"""
     A dermatology AI model predicted: {lesion_types.get(predicted_class.lower(), 'Unknown Lesion')}
 
-    Patient details:
+    Patient Details:
     - Age: {age}
     - Sex: {sex}
     - Lesion Location: {body_location}
-    - Lifestyle/Work Type: {lifestyle_work}
+    - Lifestyle/Work: {lifestyle_work}
 
-    Please explain in a friendly and concise manner, why it might appear at this age, body location, and sex,
+      Please explain in a friendly and concise manner, why it might appear at this age, body location, and sex,
     how the person's lifestyle or work may affect it, and what they should do next.
     """
 
@@ -104,7 +116,19 @@ def patient_report(predicted_class, age, sex, body_location, lifestyle_work, max
         max_tokens=max_tokens
     )
 
-    return response.choices[0].message.content
+    explanation = response.choices[0].message.content
+
+    # Append the disclaimer
+    disclaimer = (
+        "\n\n---\n"
+        "⚠️ **Disclaimer:**\n"
+        "This tool is powered by AI and is intended for educational and informational purposes only.\n"
+        "It does **not** provide medical advice, diagnosis, or treatment.\n"
+        "Always consult a qualified healthcare provider for any skin concerns or conditions."
+    )
+
+    return explanation + disclaimer
+
 
 # Page 1: Introduction
 if page == "Introduction":
